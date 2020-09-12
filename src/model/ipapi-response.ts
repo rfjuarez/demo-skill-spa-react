@@ -1,4 +1,4 @@
-export interface IpApiResponse {
+export type IpApiResponse = {
     query: string;
     status: string;
     country: string;
