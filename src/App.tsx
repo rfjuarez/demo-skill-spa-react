@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{useEffect, useState} from 'react';
 import './App.css';
+import { IpApiResponse } from './model/ipapi-response';
+import {IpApiClient} from "./services/ipapi-service";
+
+const  fetchUserLocation = async() =>{
+  const ipApiClient = new IpApiClient();
+  return await ipApiClient.getCurrentLocation();
+};
 
 function App() {
+  const [userLocation, setUserLocation] = useState<IpApiResponse|undefined>(undefined);
+  useEffect(()=>{
+    fetchUserLocation().then((location)=>setUserLocation(location));
+  },[userLocation]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>      
+      {JSON.stringify(userLocation)}
     </div>
   );
 }
