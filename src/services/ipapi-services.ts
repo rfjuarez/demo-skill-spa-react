@@ -6,5 +6,5 @@ export class IpApiClient extends HttpClient {
     super("http://ip-api.com");
   };
 
-  public getCurrentLocation = async() => this.instance.get<IpApiResponse>("/json");
+  public getCurrentLocation = async() => this.instance.get<IpApiResponse>("/json").then(r=>r);
 };
