@@ -7,7 +7,7 @@ enum Units {
 }
 
 export class WeatherClient extends HttpClient {
-    private APPID: string = "300cb9ed4c991d177ab8acae779d828f";
+    private APPID: string = "{YOUR-API-KEY}";
 
     public constructor() {
         super("http://api.openweathermap.org/data/2.5");
