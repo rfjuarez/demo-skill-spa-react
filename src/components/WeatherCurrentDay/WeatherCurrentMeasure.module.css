@@ -1,0 +1,15 @@
+.weather-current-measure {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+}
+
+.weather-current-measure--temp {
+    margin: 0;
+    font-weight: 700;
+    font-size: 4em;
+}
+
+.weather-current-measure--description {
+    margin: 0;
+}

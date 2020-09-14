@@ -1,0 +1,18 @@
+.item-nav li {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+}
+
+/* Active/current link */
+.item-nav li.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Links on mouse-over */
+.item-nav li:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
