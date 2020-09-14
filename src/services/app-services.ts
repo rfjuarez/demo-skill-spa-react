@@ -2,7 +2,15 @@ import {IpApiClient} from "./ipapi-services";
 import {IpApiResponse} from "../model/ipapi-response"
 import {WeatherResponse} from "../model/weather-response"
 import {WeatherClient} from "./weather-services";
-import {weatherAllInOne} from "./mock-responses";
+import {cities, weatherAllInOne} from "./mock-responses";
+import {City} from "../model/app";
+
+const _getCities = async (): Promise<City[]> => {
+    return new Promise<City[]>((resolve) => {
+        let response: City[] = Object.assign(cities);
+        resolve(response);
+    });
+}
 
 export class AppService {
     private ipApiClient = new IpApiClient();
@@ -11,6 +19,7 @@ export class AppService {
         const apiLocation: IpApiResponse = await this.ipApiClient.getCurrentLocation();
         return await this.weatherClient.getCurrentAndForecastByFiveDay(apiLocation.lat, apiLocation.lon);
     }
+    public getCities = async (): Promise<City[]> => _getCities();
 }
 
 export class AppServicesMock {
@@ -20,4 +29,5 @@ export class AppServicesMock {
             resolve(response);
         });
     }
+    public getCities = async (): Promise<City[]> => _getCities();
 }
