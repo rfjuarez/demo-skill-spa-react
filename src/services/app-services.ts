@@ -5,6 +5,7 @@ import {WeatherClient} from "./weather-services";
 import {cities, weatherAllInOne} from "./mock-responses";
 import {City, Weather, WeatherForecastMeasure} from "../model/app";
 
+const mockDelay: number = 1800;
 const _getCities = async (): Promise<City[]> => {
     return new Promise<City[]>((resolve) => {
         let response: City[] = Object.assign(cities);
@@ -13,6 +14,7 @@ const _getCities = async (): Promise<City[]> => {
 }
 
 const _translateForecast = (response: WeatherDailyResponse[]): WeatherForecastMeasure[] => {
+    response.shift();//remove first element because is it eq. to current.
     return response.map(r => {
         return {
             dt: r.dt,
@@ -24,6 +26,7 @@ const _translateForecast = (response: WeatherDailyResponse[]): WeatherForecastMe
         }
     });
 }
+
 const _translate = (response: WeatherResponse, city: City): Weather => {
     return {
         location: city,
@@ -33,6 +36,8 @@ const _translate = (response: WeatherResponse, city: City): Weather => {
             feels_like: response.current.feels_like,
             pressure: response.current.pressure,
             humidity: response.current.humidity,
+            description: response.current.weather[0].description,
+            icon: response.current.weather[0].icon,
         },
         forecast: _translateForecast(response.daily)
     }
@@ -44,33 +49,46 @@ export interface AppService {
     getCities: () => Promise<City[]>
 }
 
-export class AppServiceImp implements AppService {
+export class AppServiceImpl implements AppService {
     private ipApiClient = new IpApiClient();
     private weatherClient = new WeatherClient();
+
     public fetchWeatherForecastByCurrentLocation = async (): Promise<Weather> => {
         const apiLocation: IpApiResponse = await this.ipApiClient.getCurrentLocation();
         const wr: WeatherResponse = await this.weatherClient.getCurrentAndForecastByFiveDay(apiLocation.lat, apiLocation.lon);
         return _translate(wr, {name: apiLocation.city, lat: apiLocation.lat, lon: apiLocation.lon});
     }
+
     public fetchWeatherForecastByCity = async (city: City): Promise<Weather> => {
         const wr: WeatherResponse = await this.weatherClient.getCurrentAndForecastByFiveDay(city.lat, city.lon);
         return _translate(wr, city);
     }
+
     public getCities = async (): Promise<City[]> => _getCities();
 }
 
 export class AppServicesMock implements AppService {
+
     public fetchWeatherForecastByCurrentLocation = async (): Promise<Weather> => {
         return new Promise<Weather>((resolve) => {
             const response: WeatherResponse = Object.assign(weatherAllInOne);
-            resolve(_translate(response, Object.assign(cities[0])));
+            setTimeout(function () {
+                resolve(_translate(response, Object.assign(cities[0])));
+            }, mockDelay);
         });
     }
+
     public fetchWeatherForecastByCity = async (city: City): Promise<Weather> => {
         return new Promise<Weather>((resolve) => {
             const response: WeatherResponse = Object.assign(weatherAllInOne);
-            resolve(_translate(response, city));
+            setTimeout(function () {
+                resolve(_translate(response, city));
+            }, mockDelay);
         });
     }
+
     public getCities = async (): Promise<City[]> => _getCities();
 }
+
+export const appServicesMock = new AppServicesMock();
+export const appServicesImpl = new AppServiceImpl();

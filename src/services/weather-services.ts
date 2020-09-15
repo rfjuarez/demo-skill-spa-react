@@ -22,5 +22,5 @@ export class WeatherClient extends HttpClient {
                 units: Units.Celsius,
                 exclude: "hourly,minutely"
             }
-        }).then(r => r);
+        });
 }

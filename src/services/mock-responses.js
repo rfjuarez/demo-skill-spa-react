@@ -14,6 +14,7 @@ export const ipApiLocation = {
     "as": "AS266772 TRIMOTION S.R.L.",
     "query": "45.234.118.21"
 };
+
 export const weatherAllInOne = {
     "lat": -31.4,
     "lon": -64.18,

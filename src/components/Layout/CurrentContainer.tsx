@@ -5,9 +5,9 @@ interface Props {
     children: React.ReactNode
 }
 
-const CurrentContainer = (props:Props) =>{
-    return(
-        <div className={styles["current"]} >
+const CurrentContainer = (props: Props) => {
+    return (
+        <div className={styles["current"]}>
             {props.children}
         </div>
     );

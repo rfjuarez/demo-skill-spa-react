@@ -1,7 +1,7 @@
 import {AppServiceActionType} from "./action-types"
 import {City, Weather} from "../../../model/app";
 import {Dispatch} from "react";
-import {AppService, AppServicesMock} from "../../../services/app-services";
+import {appServicesImpl} from "../../../services/app-services";
 
 export interface AppServiceActionMessage {
     type: AppServiceActionType
@@ -22,8 +22,7 @@ export const loadWeatherByCity = (city: City) => {
     return async (dispatch: Dispatch<AppServiceActionMessage>) => {
         dispatch(loadingWeather());
         try {
-            const appServiceClient: AppService = new AppServicesMock();
-            const response: Weather = await appServiceClient.fetchWeatherForecastByCity(city);
+            const response: Weather = await appServicesImpl.fetchWeatherForecastByCity(city);
             dispatch(loadingWeatherSuccess(response));
         } catch (err) {
             dispatch(loadingWeatherFail(err));
@@ -35,8 +34,8 @@ export const loadWeatherByCurrentLocation = () => {
     return async (dispatch: Dispatch<AppServiceActionMessage>) => {
         dispatch(loadingWeather());
         try {
-            const appServiceClient: AppService = new AppServicesMock();
-            const response: Weather = await appServiceClient.fetchWeatherForecastByCurrentLocation();
+            ;
+            const response: Weather = await appServicesImpl.fetchWeatherForecastByCurrentLocation();
             dispatch(loadingWeatherSuccess(response));
         } catch (err) {
             dispatch(loadingWeatherFail(err));

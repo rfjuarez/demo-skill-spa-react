@@ -16,6 +16,7 @@
     display: inline-block;
     margin-top: 10px;
 }
+
 .weather-current-location:hover {
     -webkit-transform: scale(1.1) perspective(1500px) rotateY(10deg);
     transform: scale(1.1) perspective(1500px) rotateY(10deg);

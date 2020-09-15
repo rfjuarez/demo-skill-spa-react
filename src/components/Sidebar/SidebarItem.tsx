@@ -1,10 +1,12 @@
 import React from "react";
 import styles from "./SidebarItem.module.css"
-interface Props{
+
+interface Props {
     children: React.ReactNode;
 }
-const SidebarItem = (props:Props) =>{
-    return(
+
+const SidebarItem = (props: Props) => {
+    return (
         <li className={styles["item-nav"]}>{props.children}</li>
     );
 }
