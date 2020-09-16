@@ -6,8 +6,12 @@ export enum Units {
     Celsius = "metric"
 }
 
-export class WeatherClient extends HttpClient {
-    private APPID: string = "{YOUR_API_KEY}";
+export interface WeatherClient {
+    getCurrentAndForecastByFiveDay: (lat: number, lon: number) => Promise<WeatherResponse>;
+}
+
+export class WeatherClientImpl extends HttpClient implements WeatherClient {
+    private APPID: string = "300cb9ed4c991d177ab8acae779d828f";
 
     public constructor() {
         super("http://api.openweathermap.org/data/2.5");
