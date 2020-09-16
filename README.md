@@ -12,7 +12,7 @@ In the project directory, you can run:
 
 ### `npm start`
 **IMPORTANT: You must replace your api-key into src/services/weather-services.ts {YOUR API KEY}
-or use the mocks services into src/store/reducers/app-state/app-service-actions**
+or set the REACT_APP_WITH_MOCKS=true environment variable into .env.development file**
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
