@@ -11,7 +11,7 @@ export interface WeatherClient {
 }
 
 export class WeatherClientImpl extends HttpClient implements WeatherClient {
-    private APPID: string = "300cb9ed4c991d177ab8acae779d828f";
+    private APPID: string = "{YOUR_API_KEY}";
 
     public constructor() {
         super("http://api.openweathermap.org/data/2.5");
