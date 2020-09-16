@@ -1,7 +1,7 @@
 import {AppServiceActionType} from "./action-types"
 import {City, Weather} from "../../../model/app";
 import {Dispatch} from "react";
-import {appServicesImpl} from "../../../services/app-services";
+import {appServices} from "../../../services/env-services";
 
 export interface AppServiceActionMessage {
     type: AppServiceActionType
@@ -22,7 +22,7 @@ export const loadWeatherByCity = (city: City) => {
     return async (dispatch: Dispatch<AppServiceActionMessage>) => {
         dispatch(loadingWeather());
         try {
-            const response: Weather = await appServicesImpl.fetchWeatherForecastByCity(city);
+            const response: Weather = await appServices.fetchWeatherForecastByCity(city);
             dispatch(loadingWeatherSuccess(response));
         } catch (err) {
             dispatch(loadingWeatherFail(err));
@@ -34,8 +34,7 @@ export const loadWeatherByCurrentLocation = () => {
     return async (dispatch: Dispatch<AppServiceActionMessage>) => {
         dispatch(loadingWeather());
         try {
-            ;
-            const response: Weather = await appServicesImpl.fetchWeatherForecastByCurrentLocation();
+            const response: Weather = await appServices.fetchWeatherForecastByCurrentLocation();
             dispatch(loadingWeatherSuccess(response));
         } catch (err) {
             dispatch(loadingWeatherFail(err));

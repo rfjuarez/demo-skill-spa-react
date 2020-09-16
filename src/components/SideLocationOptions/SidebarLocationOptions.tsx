@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {City} from "../../model/app";
-import {appServicesMock} from "../../services/app-services";
+import {appServices} from "../../services/env-services"
 import SidebarItem from "../Sidebar/SidebarItem";
 import Location from "../Location/Location";
 import Sidebar from "../Sidebar/Sidebar";
@@ -11,7 +11,7 @@ const SideLocationOption = () => {
     useEffect(() => {
         //prevent memory leaks when mount
         let mounted = true;
-        appServicesMock.getCities().then(cities => mounted && setCities(cities));
+        appServices.getCities().then(cities => mounted && setCities(cities));
         return () => {
             mounted = false;
             setCities(undefined);
