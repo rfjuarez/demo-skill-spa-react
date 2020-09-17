@@ -25,4 +25,5 @@ Pending development
 ## Added dependencies
 - react-redux
 - axios
+- enzyme
 
