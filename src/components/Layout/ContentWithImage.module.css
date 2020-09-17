@@ -1,0 +1,5 @@
+.content-with-image {
+    position: relative;
+    background-repeat: no-repeat, repeat;
+    border-radius: 8px;
+}

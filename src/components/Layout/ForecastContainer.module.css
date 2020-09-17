@@ -1,0 +1,9 @@
+.forecast-container {
+    list-style-type: none;
+    margin: 8px 12px;
+    padding: 8px 12px 8px 12px;
+    box-shadow: 0 0 50px -5px rgb(109, 136, 137);
+    border-radius: 8px;
+    float: right;
+    height: 200px;
+}

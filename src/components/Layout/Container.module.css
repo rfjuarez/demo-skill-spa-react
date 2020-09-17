@@ -1,0 +1,12 @@
+.container {
+    margin: 25px;
+    padding: 8px;
+    background-color: #343d4b;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 0 70px -10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 70px -10px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+}

@@ -1,0 +1,9 @@
+.current {
+    position: relative;
+    padding: 8px;
+    height: 300px;
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 0 50px -5px rgb(109, 136, 137);
+    float: left;
+}
